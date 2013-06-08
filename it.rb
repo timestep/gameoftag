@@ -1,5 +1,7 @@
 class Mark
 
+	attr_accessor :add, :remove, :who_is_it, :check, :change_who_is_it
+
 	def initialize 
 		@players = Hash.new
 	end
@@ -31,12 +33,15 @@ class Mark
 		@players[new_it] = true
 	end
 
+	def tag_player(user)
+		@players[user] = true
+	end
+
+	def randomizer
+		#choose random value from hash and output
+
+	end
+
+
 end
 
-q = Mark.new
-
-player = gets.chomp
-
-q.add(player)
-
-q.check(player)
