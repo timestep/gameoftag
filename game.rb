@@ -1,4 +1,4 @@
-include "./it.rb"
+require "./it.rb"
 
 class Game 
 	
@@ -60,17 +60,9 @@ class Game
 				#find user in msg
 				tag.remove(user)
 			else
-
-
+			end
+		end
 		end
 	end
 
 end
-									
-	
-
-
-
-
-
-
