@@ -1,4 +1,4 @@
-class Mark
+	class Mark
 
 	attr_accessor :add, :remove, :who_is_it, :check, :change_who_is_it
 
