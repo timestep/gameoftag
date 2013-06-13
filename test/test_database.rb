@@ -56,7 +56,7 @@ class DatabaseTest < Test::Unit::TestCase
 	end
 
 	def test_user_contains_information
-		person = ["John","Smith"]
+		person = ["John", false]
 		@testdatabase.add_user(@testuser.convert_input_to_hash(person))	
 		assert_equal person[0], @testdatabase.database[0].fetch(:user)
 		assert_equal person[1], @testdatabase.database[0].fetch(:tagstate)
@@ -67,6 +67,15 @@ class DatabaseTest < Test::Unit::TestCase
 		person = ["John","Smith","yol@mlg.com",416988000,"League of Legends is Da Best"]
 		@testdatabase.add_user(person)
 		assert_equal [], @testdatabase.database
+	end
+
+	def test_add_string
+		user1 = ["John","Smith"]
+		user2 = ["Rocky","Balboa"]
+		u1=@testuser.convert_input_to_hash(user1)
+		u2=@testuser.convert_input_to_hash(user2)
+		assert u1.is_a? Hash
+		assert u2.is_a? Hash
 	end
 
 	def test_convert_only_accepts_arrays_with_5_parameters
@@ -103,6 +112,17 @@ class DatabaseTest < Test::Unit::TestCase
 	# 	assert_equal person1[2], @testdatabase.find_email("Smith")
 	# end
 
+	def test_find_user_with_tagstate
+		user1 = ['john',true]
+		user2 = ['rob',false]
+
+		@testdatabase.add_user(@testuser.convert_input_to_hash(user1))
+		@testdatabase.add_user(@testuser.convert_input_to_hash(user2))
+
+		assert_equal @testdatabase.database[0], @testdatabase.find_user_with_tagstate
+
+	end
+
 	def test_modify_user
 		person1 = ["John","Smith"]
 		person2 = ["Rocky","Balboa"]
@@ -111,8 +131,15 @@ class DatabaseTest < Test::Unit::TestCase
 		assert_equal false, @testdatabase.modify_user("John","tagstate", false)
 		assert_equal "Bob", @testdatabase.modify_user("John","user","Bob")
 	end
-	
 
+	def test_modifty_tag_state
+		user1 = ['john',true]
+		user2 = ['rob',false]
+
+		@testdatabase.add_user(@testuser.convert_input_to_hash(user1))
+		@testdatabase.add_user(@testuser.convert_input_to_hash(user2))
+
+	end
 
 
 end
